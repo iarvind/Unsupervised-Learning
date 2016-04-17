@@ -1,0 +1,33 @@
+\chapter{Introduction}
+
+Introductory lines...
+
+
+
+\section{Metropolis - Hastings algorithm}
+
+ Metropolis Hastings algorithm is a Markov chain Monte Carlo (MCMC) method for generating random numbers from a probability distribution for which direct sampling is difficult.
+ 
+ An MH step of invariant distribution p(x) and proposal distribution $ q(x^{\ast}|x) $ involves sampling a value $ x^{\ast} $ given the current value x according to $ q(x^{\ast} | x) $. Generated value has a Acceptance probability of
+ $ A(x,x^{\ast})$ given below, otherwise remains at x.
+$$ A(x,x^{\ast}) = min\{1,\frac{p(x^\ast)q(x|x^{\ast})}{p(x)q(x^{\ast}|x)}\} $$
+
+ 
+
+\section{Gibbs sampling}
+
+Gibbs sampling is a Markov chain Monte Carlo (MCMC) method for generating random numbers which are approximated from a specified multivariate probability distribution, when direct sampling is difficult. It is a randomized algorithm (i.e. an algorithm that makes use of random numbers), and is an alternative to deterministic algorithms for statistical inference such as the expectation-maximization algorithm (EM).
+
+The main idea behind Gibbs sampling is that given a multivariate distribution it is simpler to sample from a conditional distribution than to marginalize by integrating over a joint distribution. Suppose we want to obtain N samples from $ \mathbf{x} = (x_1, \dots, x_n) $ from a joint distribution $ p(x_1, \dots, x_n) $. Denote the ith sample by $ \mathbf{x}^{(i)} = (x_1^{(i)}, \dots, x_n^{(i)})$. We proceed as
+
+\begin{enumerate}
+1.Initialize $ \mathbf{x}^{(i)} $ with some random values.\\
+2.for i = 0 to N-1 \\
+-Sample $x_1 ~ p(x_1|x_2^{(i)},x_{3}^{(i)},\dots,x_n^{(i)}) $\\
+-Sample $x_2 ~ p(x_2|x_1^{(i+1)},x_{3}^{(i)},\dots,x_n^{(i)}) $\\
+    \\
+    \\
+-Sample $x_n ~ p(x_n|x_1^{(i+1)},x_{2}^{(i+1)},\dots,x_{n-1}^{(i+1)}) $ \\
+
+\end{enumerate}
+

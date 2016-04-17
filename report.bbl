@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bengio:2009:LDA:1658423.1658424}
+Yoshua Bengio.
+\newblock Learning deep architectures for ai.
+\newblock {\em Found. Trends Mach. Learn.}, 2(1):1--127, January 2009.
+
+\bibitem{DBLP:journals/corr/abs-1305-0445}
+Yoshua Bengio.
+\newblock Deep learning of representations: Looking forward.
+\newblock {\em CoRR}, abs/1305.0445, 2013.
+
+\bibitem{gm}
+Genevieve B.~Orr Gregoire~Montavon and Klaus-Robert~Muller (Eds.).
+\newblock {\em Neural Networks: Tricks of the Trade}.
+\newblock Second Edition. Springer, 2012.
+
+\end{thebibliography}

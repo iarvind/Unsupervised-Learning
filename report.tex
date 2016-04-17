@@ -1,0 +1,151 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{amsthm,amssymb,mathrsfs,setspace}%amsmath, latexsym,footmisc
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{color}
+% \usepackage{pstcol}
+% \usepackage{play}
+\usepackage{epsfig}
+%\usepackage[grey,times]{quotchap}
+\usepackage{inconsolata} %\texttt{This is Inconsolata.}
+%\newenvironment{myfont}{\fontfamily{<familyname>}\selectfont}{\par}
+\usepackage[nottoc]{tocbibind}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%
+
+\input xy
+\xyoption{all}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\renewcommand{\baselinestretch}{1.5}
+
+
+
+
+\begin{document}
+
+%\pagenumbering{arabic} \setcounter{page}{1}
+
+% --------------- Title page -----------------------
+
+\begin{titlepage}
+\enlargethispage{3cm}
+
+\begin{center}
+
+\vspace*{-2cm}
+
+\textbf{\Large BUILDING HIGH LEVEL FEATURES USING UNSUPERVISED LEARNING}
+
+\vfill
+
+ A Project Report Submitted \\
+for the Course \\[1cm]
+
+{\bf\Large\ MA498 Project ~I }\\[.1in]
+
+ \vfill
+
+{\large \emph{by}}\\[5pt]
+{\large\bf {Arvind Choudhary}}\\[5pt]
+{\large (Roll No. 120123009)}
+
+\vfill
+\includegraphics[height=2.5cm]{iitglogo}
+
+\vspace*{0.5cm}
+
+{\em\large to the}\\[10pt]
+{\bf\large DEPARTMENT OF MATHEMATICS} \\[5pt]
+{\bf\large \mbox{INDIAN INSTITUTE OF TECHNOLOGY GUWAHATI}}\\[5pt]
+{\bf\large GUWAHATI - 781039, INDIA}\\[10pt]
+{\it\large November 2015}
+\end{center}
+
+\end{titlepage}
+
+\clearpage
+
+% --------------- Certificate page -----------------------
+\pagenumbering{roman} \setcounter{page}{2}
+\begin{center}
+{\Large{\bf{CERTIFICATE}}}
+\end{center}
+%\thispagestyle{empty}
+
+
+\noindent
+This is to certify that the work contained in this project report
+entitled ``{\bf Building high level features using unsupervised learning}" submitted
+by {\bf Arvind Choudhary} ({\bf Roll No.: 120123009}) to Department of Mathematics, Indian Institute of Technology Guwahati
+towards the requirement of the course \textbf{MA498 Project~I}
+has been carried out by him under my
+supervision.
+
+\vspace{4cm}
+
+\noindent Guwahati - 781 039 \hfill (Dr. Arabin Kumar Dey)
+
+\noindent November 2015 \hfill Project Supervisor
+
+\clearpage
+
+% --------------- Abstract page -----------------------
+\begin{center}
+{\Large{\bf{ABSTRACT}}}
+\end{center}
+
+
+The main aim objectives of the project are:\\
+Exploring and building features using Restricted Boltzmann Machine.
+% and applying them on the hand written digit data (MNIST data set).
+
+\clearpage
+
+
+
+\tableofcontents
+\clearpage
+%\listoffigures
+%\listoftables
+
+
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% =========== Main chapters starts here. Type in separate files and include the filename here. ==
+% ============================
+
+\input chapter0.tex
+
+\input chapter1.tex
+
+\input chapter2.tex
+
+
+
+\nocite{gm} \nocite{DBLP:journals/corr/abs-1305-0445} \nocite{Bengio:2009:LDA:1658423.1658424}
+
+\bibliographystyle{plain}
+\bibliography{bib}
+
+\end{document}
+

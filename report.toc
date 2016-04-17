@@ -1,0 +1,25 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Artificial Neural Networks}{1}
+\contentsline {subsection}{\numberline {1.1.1}Artificial Neurons}{1}
+\contentsline {subsubsection}{Perceptron Neuron}{1}
+\contentsline {subsubsection}{Sigmoid Neuron}{2}
+\contentsline {subsection}{\numberline {1.1.2}Architecture}{3}
+\contentsline {chapter}{\numberline {2}Backpropagation}{4}
+\contentsline {section}{\numberline {2.1}Learning with Gradient Descent}{4}
+\contentsline {section}{\numberline {2.2}Gradient Descent}{5}
+\contentsline {subsection}{\numberline {2.2.1}Gradient Descent and Neural Network}{6}
+\contentsline {subsection}{\numberline {2.2.2}Stochastic Gradient Descent}{6}
+\contentsline {section}{\numberline {2.3}BackPropagation}{7}
+\contentsline {subsection}{\numberline {2.3.1}Assumptions about cost function}{8}
+\contentsline {subsection}{\numberline {2.3.2}Fundamental equations}{9}
+\contentsline {subsubsection}{Equations}{9}
+\contentsline {subsubsection}{Algorithm steps}{9}
+\contentsline {section}{\numberline {2.4}Implementation}{9}
+\contentsline {chapter}{\numberline {3}Restricted Boltzmann Machine}{12}
+\contentsline {section}{\numberline {3.1}Energy-Based Models (EBM)}{12}
+\contentsline {subsection}{\numberline {3.1.1}EBMs with Hidden Units}{13}
+\contentsline {section}{\numberline {3.2}Restricted Boltzmann Machines (RBM)}{14}
+\contentsline {subsection}{\numberline {3.2.1}Metropolis - Hastings algorithm}{14}
+\contentsline {subsection}{\numberline {3.2.2}Gibbs sampling}{14}
+\contentsline {subsection}{\numberline {3.2.3}RBM}{15}
+\contentsline {chapter}{Bibliography}{19}

@@ -1,0 +1,127 @@
+\chapter{Restricted Boltzmann Machine}
+A restricted Boltzmann machine (RBM) is a generative stochastic artificial neural network that can learn a probability distribution over its set of inputs.
+RBM is a Energy Bases Learning Model ans is a variant of Boltzmann machine, with the restriction that the neurons must form a bipartite graph: a pair of nodes from each of the two groups of units, commonly referred to as the "visible" and "hidden" units respectively, may have a symmetric connection between them, and there are no connections between nodes within a group. RBM performs Stochastic gradient descent to learn the weights and then applying W to the hidden layer gives the output which is considered as an approximation to the identity function.
+
+\section{Energy-Based Models (EBM)}
+Energy-based models associates a scalar energy to each configuration of the variables of interest. The configurations like to have low energy. Energy-based probabilistic models define probability distribution through an energy function as:
+\begin{eqnarray}
+p(x) = \frac{e^{-E(x)}}{Z}
+\end{eqnarray}
+where Z is normalizing factor given by:\\
+$$Z = \sum_x e^{-E(x)}$$
+The idea is to minimize the negative empirical log-likelihood (or, maximize log-likelihood) of the energy function. Performming (stochastic) Gradient Descent, we estimate the parameters of model.
+We define the log-likelihood as:\\
+$$L(\theta) = \frac{1}{N}\sum_x log(p(x))$$
+and the loss function as negative log-likelihood.\\
+$$l(\theta) = -L(\theta)$$
+with gradient function as $-\frac{\partial log(p(x))}{\partial(\theta)}$
+where, $\theta$ are the parameters of the model and summation runs over all the training samples.
+\subsection{EBMs with Hidden Units}
+If we have hidden part $h$, then the associated Energy function is $E(x,h)$ with $x$ as visible unit.
+So,\\
+$$P(x) = \sum_h \frac{e^{E(x,h)}}{Z}$$
+and so, $$Z = \sum_x \sum_h e^{-E(x,h)}$$
+
+\section{Restricted Boltzmann Machines (RBM)}
+
+\subsection{Metropolis - Hastings algorithm}
+
+Metropolis Hastings algorithm is a Markov chain Monte Carlo (MCMC) method for generating random numbers from a probability distribution for which direct sampling is difficult.
+
+An MH step of invariant distribution p(x) and proposal distribution $ q(x^{\ast}|x) $ involves sampling a value $ x^{\ast} $ given the current value x according to $ q(x^{\ast} | x) $. Generated value has a Acceptance probability of
+$ A(x,x^{\ast})$ given below, otherwise remains at x.
+$$ A(x,x^{\ast}) = min\{1,\frac{p(x^\ast)q(x|x^{\ast})}{p(x)q(x^{\ast}|x)}\} $$
+
+
+
+\subsection{Gibbs sampling}
+
+Gibbs sampling is a Markov chain Monte Carlo (MCMC) method for generating random numbers which are approximated from a specified multivariate probability distribution, when direct sampling is difficult. It is a randomized algorithm (i.e. an algorithm that makes use of random numbers), and is an alternative to deterministic algorithms for statistical inference such as the expectation-maximization algorithm (EM).
+
+The main idea behind Gibbs sampling is that given a multivariate distribution it is simpler to sample from a conditional distribution than to marginalize by integrating over a joint distribution. Suppose we want to obtain N samples from $ \mathbf{x} = (x_1, \dots, x_n) $ from a joint distribution $ p(x_1, \dots, x_n) $. Denote the ith sample by $ \mathbf{x}^{(i)} = (x_1^{(i)}, \dots, x_n^{(i)})$. We proceed as
+
+\begin{enumerate}
+	\item Initialize $ \mathbf{x}^{(i)} $ with some random values.
+	\item for i = 0 to N-1
+	
+	Sample $x_1 \sim p(x_1|x_2^{(i)},x_{3}^{(i)},\dots,x_n^{(i)}) $\\
+	Sample $x_2 \sim p(x_2|x_1^{(i+1)},x_{3}^{(i)},\dots,x_n^{(i)}) $\\
+	\textbf{.}\\
+	\textbf{.}\\
+	\textbf{.}\\
+	Sample $x_n \sim p(x_n|x_1^{(i+1)},x_{2}^{(i+1)},\dots,x_{n-1}^{(i+1)})$\\
+	
+\end{enumerate}
+
+\subsection{RBM}
+The RBM is EBM with Energy function $E(x,h)$ as:
+\begin{eqnarray}
+E(x,h) = -h'Wx - b'x - c'h \\
+p(x,h) = \frac{e^{-E(x,h)}}{Z}
+\end{eqnarray}
+where W corresponds to the weights connecting hidden and visible units and $b$ and $c$ are the offsets of the visible and hidden layers respectively. The distribution P becomes the Boltzmann distribution.
+Also, visible and hidden units are conditionally independent given one another. So, we can write:
+\begin{align*}
+p(h|x) = \prod_{i} p(h_i|x)\\
+p(x|h) = \prod_{j} p(x_j|h)
+\end{align*}
+
+For RBMs with binary units, we obtain the following probabilistic result:
+\begin{equation*}
+	\begin{multlined}
+P(h_i = 1|x) = \sigma(c_i + W_i x)\\
+P(x_j = 1|h) = \sigma(b_j + {W'}_j h)\\
+	\end{multlined}
+\end{equation*}
+\textbf{Proof:}\\
+From conditional distribution,\\
+\begin{align*}
+P(h|x) & = \frac{P(x,h)}{P(x)}\\
+& = \frac{e^{-(h'Wx + c'h + b'x)}}{\sum_h e^{-(h'Wx+c'h+b'x)}}\\
+& = \frac{\prod_{j=1}^{H}e^{-(h_j W_j x + h_j c_j)}}{\prod_{j=1}^{H}\sum_{h_j} e^{-(h_j W_j x + h_j c_j)}}\\
+& = \frac{\prod_{j=1}^{H}e^{-(h_j W_j x + h_j c_j)}}{\prod_{j=1}^{H}(1 + e^{-(h_j W_j x + h_j c_j)})}\\
+\end{align*}
+Therefore, $p(h^{(i)} = 1 | x) = \frac{(W_i x + c_i)}{1+e^{(W_i x + c_i)}}$\\
+and, we have $P(h_i = 1|x) = \sigma(c_i + {W}_ix)$\\
+and, similarly, $P(x_j = 1|h) = \sigma(b_j + {W'}_jh)$\\
+
+
+
+
+The negative log-likelihood of Boltzmann distribution with parameters $\theta$ is:
+\begin{eqnarray}
+-\frac{\partial}{\partial \theta}log(P(x)) = E_{h|x} (\frac{\partial}{\partial \theta}E(x,h)) - E_{x,h}(\frac{\partial}{\partial \theta}E(x,h))
+\end{eqnarray}
+
+Above gradient contains two terms which are referred as \textbf{postive} and \textbf{negative phase}. Positive phase increases the probability of training data and another decreases the probability of generated samples.
+
+\textbf{Proof:}\\
+    $$ P(x) = {\sum}_h{\frac{e^{-E(x,h)}}{Z}} $$
+    Differentiating,
+    $$ -{\frac{\partial}{\partial \theta}}logP(x) = {\frac{\partial}{\partial \theta}}(-logP({\sum}_h{\frac{e^{-E(x,h)}}{Z}}) $$
+    $$  ={\frac{-1}{{\sum}_hP(x)}}[{\frac{1}{Z}}{\sum}_h(-{\frac{\partial E(x,h)}{\partial \theta}}e^{-E(x,h)})-{\frac{1}{Z^2}}({\sum}_he^{-E(x,h)}{\frac{\partial Z}{\partial \theta}})] $$
+    And,
+    $$ {\frac{\partial Z}{\partial \theta}} = {\sum}_x{\sum}_he^{-E(x,h)}{\frac{\partial E(x,h)}{\partial \theta}} $$
+    So,
+    $$ -{\frac{\partial}{\partial \theta}}logP(x) = ({\sum}_h{\frac{\partial E(x,y)}{\partial \theta}}{\frac{P(x,h)}{P(x)}})-{\sum}_x{\sum}_h{\frac{\partial E(x,h)}{\partial \theta}}P(x,h) $$ 
+    Hence the result follows :
+    $$ -\frac{\partial}{\partial \theta}log(P(x)) = E_{h|x} (\frac{\partial}{\partial \theta}E(x,h)) - E_{x,h}(\frac{\partial}{\partial \theta}E(x,h)) $$
+    where:\\
+    $E_{h|X}$ is conditional expectation and $E_{x,h}$ is expectation under joint distribution of x and h.\\
+    Now, to find these expectations, we estimate them using some MonteCarlo Techniques. The idea is to form a stationary Markov Chain which converges in distribution to the Boltzmann distribution. Further by Gibbs sampling, we generate both x and h.\\
+    So, expectations are estimated as under:\\
+    $$ E_{h|x} (\frac{\partial}{\partial \theta}E(x,h)) ={\frac{\partial}{\partial \theta}}E(x,h) $$
+    $$ E_{x,h}({\frac{\partial}{\partial \theta}}E(x,h)|x) ={\frac{\partial}{\partial \theta}}E(\tilde{x},\tilde{h}) $$
+
+
+From Gibbs sampling we have:
+\begin{equation*}
+	\begin{multlined}
+		h^{(n+1)} \sim \sigma(W'x^{(n)} + c)\\
+		x^{(n+1)} \sim \sigma(Wh^{(n+1)} + b)\\
+	\end{multlined}
+\end{equation*}
+Lastly, we need gradient of negative log-likelihood with respect to the weights W and constants b and c (bias constants). From results we obtain the gradient as under:\\
+$$ -{\frac{\partial}{\partial W_{jk}}}logP(x) = h^{(t)}(x^{(t)})'-\tilde{h} \tilde{x'} $$ 
+$$ -{\frac{\partial}{\partial b_j}}logP(x) = x^{(t)}-\tilde{x} $$ 
+$$ -{\frac{\partial}{\partial c_k}}logP(x) = h^{(t)}-\tilde{h} $$
